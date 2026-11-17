@@ -1,0 +1,605 @@
+{
+  "factID": "WA:RF:49cec34831acb661963d3c72949e8490d3cd9d28b5a4efa24b05c8124d6aa647",
+  "source": "rule",
+  "fact": {
+    "subject": {
+      "type": "Infringement ID",
+      "value": "01",
+      "dataType": "string"
+    },
+    "relationship": {
+      "type": "has recommendation"
+    },
+    "object": {
+      "type": "Outcome Score",
+      "value": "High Risk",
+      "dataType": "string"
+    },
+    "certainty": 80
+  },
+  "time": 1794923959928,
+  "rule": {
+    "bindings": {
+      "O": "High Risk",
+      "S": "01"
+    },
+    "conditions": [
+      {
+        "certainty": 80,
+        "evidence": {
+          "factID": "WA:RF:48851f37102e8e71d8071ee81b290796b32923d4aa796a3972385069d58ac6d6",
+          "source": "rule",
+          "fact": {
+            "subject": {
+              "type": "Infringement ID",
+              "value": "01",
+              "dataType": "string"
+            },
+            "relationship": {
+              "type": "has fraud likelihood"
+            },
+            "object": {
+              "type": "Outcome Score",
+              "value": "Score",
+              "dataType": "string"
+            },
+            "certainty": 80
+          },
+          "time": 1794923959928,
+          "rule": {
+            "bindings": {
+              "O": "Score",
+              "S": "01"
+            },
+            "conditions": [
+              {
+                "certainty": 100,
+                "evidence": {
+                  "factID": "WA:RF:21030ad956a82710d54f21696419cff5831ac0c580c917aa678ca8960225dd57",
+                  "source": "rule",
+                  "fact": {
+                    "subject": {
+                      "type": "Infringement ID",
+                      "value": "01",
+                      "dataType": "string"
+                    },
+                    "relationship": {
+                      "type": "has nomination details"
+                    },
+                    "object": {
+                      "type": "Offence Information",
+                      "value": true,
+                      "dataType": "boolean"
+                    },
+                    "certainty": 100
+                  },
+                  "time": 1794923940191,
+                  "rule": {
+                    "bindings": {
+                      "DECLARANT": "Rod Chambers",
+                      "DEC_DATE_OF_BIRTH": {
+                        "type": "date",
+                        "value": 849657600000
+                      },
+                      "DEC_GENDER": "Male",
+                      "LOCATION": "ACT",
+                      "NOMINEE": "Caroline Santos",
+                      "NOM_DATE_OF_BIRTH": {
+                        "type": "date",
+                        "value": 949449600000
+                      },
+                      "NOM_GENDER": "Female",
+                      "O": true,
+                      "S": "01",
+                      "VEHICLE_REG_NUMBER": "BT17297"
+                    },
+                    "conditions": [
+                      {
+                        "certainty": 100,
+                        "evidence": {
+                          "factID": "WA:AF:543971949bfaa3043b0525997d1b9a2fe50f6430aa9494b5c4c8d833988ca7db",
+                          "source": "answer",
+                          "fact": {
+                            "subject": {
+                              "type": "Infringement ID",
+                              "value": "01",
+                              "dataType": "string"
+                            },
+                            "relationship": {
+                              "type": "involves a vehicle reg number"
+                            },
+                            "object": {
+                              "type": "Vehicle Reg Number",
+                              "value": "BT17297",
+                              "dataType": "string"
+                            },
+                            "certainty": 100
+                          },
+                          "time": 1794923920732
+                        },
+                        "factID": "WA:AF:543971949bfaa3043b0525997d1b9a2fe50f6430aa9494b5c4c8d833988ca7db",
+                        "factKey": "3b9e34bb-87a7-4260-86b9-30d5fe8c3758",
+                        "impact": 12.5,
+                        "object": "BT17297",
+                        "objectType": "string",
+                        "relationship": "involves a vehicle reg number",
+                        "salience": 100,
+                        "subject": "01"
+                      },
+                      {
+                        "certainty": 100,
+                        "evidence": {
+                          "factID": "WA:AF:62f7e37f77ac0112efc7febb0f7bd283a1000a865fcf9bba6c49b08945f93a2a",
+                          "source": "answer",
+                          "fact": {
+                            "subject": {
+                              "type": "Infringement ID",
+                              "value": "01",
+                              "dataType": "string"
+                            },
+                            "relationship": {
+                              "type": "has a declarant"
+                            },
+                            "object": {
+                              "type": "Declarant",
+                              "value": "Rod Chambers",
+                              "dataType": "string"
+                            },
+                            "certainty": 100
+                          },
+                          "time": 1794923923655
+                        },
+                        "factID": "WA:AF:62f7e37f77ac0112efc7febb0f7bd283a1000a865fcf9bba6c49b08945f93a2a",
+                        "factKey": "76f17f85-fb40-4db9-8077-f6749eefd702",
+                        "impact": 12.5,
+                        "object": "Rod Chambers",
+                        "objectType": "string",
+                        "relationship": "has a declarant",
+                        "salience": 100,
+                        "subject": "01"
+                      },
+                      {
+                        "certainty": 100,
+                        "evidence": {
+                          "factID": "WA:RF:6f5d5812afb79f1fdd80a7f2087b0ac77892c5216b678c5f0cb83cd1acbc2400",
+                          "source": "rule",
+                          "fact": {
+                            "subject": {
+                              "type": "Infringement ID",
+                              "value": "01",
+                              "dataType": "string"
+                            },
+                            "relationship": {
+                              "type": "has gender of declarant"
+                            },
+                            "object": {
+                              "type": "Gender",
+                              "value": "Male",
+                              "dataType": "string"
+                            },
+                            "certainty": 100
+                          },
+                          "time": 1794923923655,
+                          "rule": {
+                            "bindings": {
+                              "DECLARANT": "Rod Chambers",
+                              "O": "Male",
+                              "S": "01"
+                            },
+                            "conditions": [
+                              {
+                                "certainty": 100,
+                                "factID": "WA:AF:62f7e37f77ac0112efc7febb0f7bd283a1000a865fcf9bba6c49b08945f93a2a",
+                                "factKey": "76f17f85-fb40-4db9-8077-f6749eefd702",
+                                "impact": 50,
+                                "object": "Rod Chambers",
+                                "objectType": "string",
+                                "relationship": "has a declarant",
+                                "repeated": true,
+                                "salience": 100,
+                                "subject": "01"
+                              },
+                              {
+                                "certainty": 100,
+                                "evidence": {
+                                  "factID": "WA:KF:296be45703c1bdcb01eaef75649fe20eab56b27bb5f8fddf1e572c7fe95ac2af",
+                                  "source": "km",
+                                  "fact": {
+                                    "subject": {
+                                      "type": "Declarant",
+                                      "value": "Rod Chambers",
+                                      "dataType": "string"
+                                    },
+                                    "relationship": {
+                                      "type": "has declarant gender"
+                                    },
+                                    "object": {
+                                      "type": "Gender",
+                                      "value": "Male",
+                                      "dataType": "string"
+                                    },
+                                    "certainty": 100
+                                  },
+                                  "time": 1794923916104
+                                },
+                                "factID": "WA:KF:296be45703c1bdcb01eaef75649fe20eab56b27bb5f8fddf1e572c7fe95ac2af",
+                                "impact": 50,
+                                "object": "Male",
+                                "objectType": "string",
+                                "relationship": "has declarant gender",
+                                "salience": 100,
+                                "subject": "Rod Chambers"
+                              }
+                            ],
+                            "ruleMaxCertainty": 100
+                          }
+                        },
+                        "factID": "WA:RF:6f5d5812afb79f1fdd80a7f2087b0ac77892c5216b678c5f0cb83cd1acbc2400",
+                        "factKey": "53bd8036-2ab6-4c17-8f93-929f40be512d",
+                        "impact": 12.5,
+                        "object": "Male",
+                        "objectType": "string",
+                        "relationship": "has gender of declarant",
+                        "salience": 100,
+                        "subject": "01"
+                      },
+                      {
+                        "certainty": 100,
+                        "evidence": {
+                          "factID": "WA:KF:8dece9b6e048e127379a91a4079e51885d3c2d9c9ca8ad1a4c5fff5aaf5ed083",
+                          "source": "km",
+                          "fact": {
+                            "subject": {
+                              "type": "Declarant",
+                              "value": "Rod Chambers",
+                              "dataType": "string"
+                            },
+                            "relationship": {
+                              "type": "has declarant dob"
+                            },
+                            "object": {
+                              "type": "Date of Birth",
+                              "value": 849657600000,
+                              "dataType": "date"
+                            },
+                            "certainty": 100
+                          },
+                          "time": 1794923916104
+                        },
+                        "factID": "WA:KF:8dece9b6e048e127379a91a4079e51885d3c2d9c9ca8ad1a4c5fff5aaf5ed083",
+                        "impact": 12.5,
+                        "object": 849657600000,
+                        "objectType": "date",
+                        "relationship": "has declarant dob",
+                        "salience": 100,
+                        "subject": "Rod Chambers"
+                      },
+                      {
+                        "certainty": 100,
+                        "evidence": {
+                          "factID": "WA:AF:cbc807a0a04c7e88810f580b642c0f51f5177e4e58646f90dad73dab06e63d91",
+                          "source": "answer",
+                          "fact": {
+                            "subject": {
+                              "type": "Infringement ID",
+                              "value": "01",
+                              "dataType": "string"
+                            },
+                            "relationship": {
+                              "type": "has a nominee"
+                            },
+                            "object": {
+                              "type": "Nominee",
+                              "value": "Caroline Santos",
+                              "dataType": "string"
+                            },
+                            "certainty": 100
+                          },
+                          "time": 1794923928004
+                        },
+                        "factID": "WA:AF:cbc807a0a04c7e88810f580b642c0f51f5177e4e58646f90dad73dab06e63d91",
+                        "factKey": "44ad2b81-3aaf-46ab-bae1-0bf3c82459da",
+                        "impact": 12.5,
+                        "object": "Caroline Santos",
+                        "objectType": "string",
+                        "relationship": "has a nominee",
+                        "salience": 100,
+                        "subject": "01"
+                      },
+                      {
+                        "certainty": 100,
+                        "evidence": {
+                          "factID": "WA:RF:ac2c1a22387a9e8781d615cc2f284a8ff16edc11534ee8b9620e873758e24e84",
+                          "source": "rule",
+                          "fact": {
+                            "subject": {
+                              "type": "Infringement ID",
+                              "value": "01",
+                              "dataType": "string"
+                            },
+                            "relationship": {
+                              "type": "has gender of nominee"
+                            },
+                            "object": {
+                              "type": "Gender",
+                              "value": "Female",
+                              "dataType": "string"
+                            },
+                            "certainty": 100
+                          },
+                          "time": 1794923928004,
+                          "rule": {
+                            "bindings": {
+                              "NOMINEE": "Caroline Santos",
+                              "O": "Female",
+                              "S": "01"
+                            },
+                            "conditions": [
+                              {
+                                "certainty": 100,
+                                "factID": "WA:AF:cbc807a0a04c7e88810f580b642c0f51f5177e4e58646f90dad73dab06e63d91",
+                                "factKey": "44ad2b81-3aaf-46ab-bae1-0bf3c82459da",
+                                "impact": 50,
+                                "object": "Caroline Santos",
+                                "objectType": "string",
+                                "relationship": "has a nominee",
+                                "repeated": true,
+                                "salience": 100,
+                                "subject": "01"
+                              },
+                              {
+                                "certainty": 100,
+                                "evidence": {
+                                  "factID": "WA:KF:7d97299124217372e22b2b5b1c732fd5ad026ea3ad9e8140221fc0d70046cdc9",
+                                  "source": "km",
+                                  "fact": {
+                                    "subject": {
+                                      "type": "Nominee",
+                                      "value": "Caroline Santos",
+                                      "dataType": "string"
+                                    },
+                                    "relationship": {
+                                      "type": "has nominee gender"
+                                    },
+                                    "object": {
+                                      "type": "Gender",
+                                      "value": "Female",
+                                      "dataType": "string"
+                                    },
+                                    "certainty": 100
+                                  },
+                                  "time": 1794923916104
+                                },
+                                "factID": "WA:KF:7d97299124217372e22b2b5b1c732fd5ad026ea3ad9e8140221fc0d70046cdc9",
+                                "impact": 50,
+                                "object": "Female",
+                                "objectType": "string",
+                                "relationship": "has nominee gender",
+                                "salience": 100,
+                                "subject": "Caroline Santos"
+                              }
+                            ],
+                            "ruleMaxCertainty": 100
+                          }
+                        },
+                        "factID": "WA:RF:ac2c1a22387a9e8781d615cc2f284a8ff16edc11534ee8b9620e873758e24e84",
+                        "factKey": "7854f4f7-bbbf-411a-b2cd-efc248088c19",
+                        "impact": 12.5,
+                        "object": "Female",
+                        "objectType": "string",
+                        "relationship": "has gender of nominee",
+                        "salience": 100,
+                        "subject": "01"
+                      },
+                      {
+                        "certainty": 100,
+                        "evidence": {
+                          "factID": "WA:AF:c149cbeb099d6c0603541abbe71d665a9fa43ec08ffe74a9debceec60b83b9b0",
+                          "source": "answer",
+                          "fact": {
+                            "subject": {
+                              "type": "Nominee",
+                              "value": "Caroline Santos",
+                              "dataType": "string"
+                            },
+                            "relationship": {
+                              "type": "has nominee dob"
+                            },
+                            "object": {
+                              "type": "Date of Birth",
+                              "value": 949449600000,
+                              "dataType": "date"
+                            },
+                            "certainty": 100
+                          },
+                          "time": 1794923940191
+                        },
+                        "factID": "WA:AF:c149cbeb099d6c0603541abbe71d665a9fa43ec08ffe74a9debceec60b83b9b0",
+                        "factKey": "8e714506-cd09-43d1-8aa1-8e8e14501f25",
+                        "impact": 12.5,
+                        "object": 949449600000,
+                        "objectType": "date",
+                        "relationship": "has nominee dob",
+                        "salience": 100,
+                        "subject": "Caroline Santos"
+                      },
+                      {
+                        "certainty": 100,
+                        "evidence": {
+                          "factID": "WA:AF:54597920bfcea82ff25457d10b81ce7420a753d825e916445147afa924e1cf75",
+                          "source": "answer",
+                          "fact": {
+                            "subject": {
+                              "type": "Infringement ID",
+                              "value": "01",
+                              "dataType": "string"
+                            },
+                            "relationship": {
+                              "type": "has location of offence"
+                            },
+                            "object": {
+                              "type": "Location of Offence",
+                              "value": "ACT",
+                              "dataType": "string"
+                            },
+                            "certainty": 100
+                          },
+                          "time": 1794923933217
+                        },
+                        "factID": "WA:AF:54597920bfcea82ff25457d10b81ce7420a753d825e916445147afa924e1cf75",
+                        "factKey": "e2e006b5-99b4-4c51-b311-83bcbd4d3b5e",
+                        "impact": 12.5,
+                        "object": "ACT",
+                        "objectType": "string",
+                        "relationship": "has location of offence",
+                        "salience": 100,
+                        "subject": "01"
+                      },
+                      {
+                        "alt": "-",
+                        "expression": {
+                          "text": "%VEHICLE_REG_NUMBER + %DECLARANT + %NOMINEE + %DEC_GENDER + %NOM_GENDER + %DEC_DATE_OF_BIRTH + %NOM_DATE_OF_BIRTH + %LOCATION"
+                        },
+                        "impact": 0,
+                        "salience": 0,
+                        "wasMet": true
+                      }
+                    ],
+                    "ruleMaxCertainty": 100
+                  }
+                },
+                "factID": "WA:RF:21030ad956a82710d54f21696419cff5831ac0c580c917aa678ca8960225dd57",
+                "factKey": "b1a8caea-33c5-4109-99b1-ffd7d5d47c25",
+                "impact": 0,
+                "object": true,
+                "objectType": "truth",
+                "relationship": "has nomination details",
+                "salience": 0,
+                "subject": "01"
+              },
+              {
+                "alt": "Location is away from Nominee's Home State",
+                "certainty": 100,
+                "evidence": {
+                  "factID": "WA:RF:4b159623eae57d15f75620d2e5129248f87e9449c24ed46b58e25a7882d257b2",
+                  "source": "rule",
+                  "fact": {
+                    "subject": {
+                      "type": "Infringement ID",
+                      "value": "01",
+                      "dataType": "string"
+                    },
+                    "relationship": {
+                      "type": "has risk factors"
+                    },
+                    "object": {
+                      "type": "Risk Factors",
+                      "value": "Infringement Location away from Nominee's Home",
+                      "dataType": "string"
+                    },
+                    "certainty": 100
+                  },
+                  "time": 1794923959928,
+                  "rule": {
+                    "bindings": {
+                      "LOCATION_OF_OFFENCE": "ACT",
+                      "NOMINEE": "Caroline Santos",
+                      "NOM_STATE": "NSW",
+                      "O": "Infringement Location away from Nominee's Home",
+                      "S": "01"
+                    },
+                    "conditions": [
+                      {
+                        "certainty": 100,
+                        "factID": "WA:AF:54597920bfcea82ff25457d10b81ce7420a753d825e916445147afa924e1cf75",
+                        "factKey": "e2e006b5-99b4-4c51-b311-83bcbd4d3b5e",
+                        "impact": 50,
+                        "object": "ACT",
+                        "objectType": "string",
+                        "relationship": "has location of offence",
+                        "repeated": true,
+                        "salience": 100,
+                        "subject": "01"
+                      },
+                      {
+                        "certainty": 100,
+                        "factID": "WA:AF:cbc807a0a04c7e88810f580b642c0f51f5177e4e58646f90dad73dab06e63d91",
+                        "factKey": "44ad2b81-3aaf-46ab-bae1-0bf3c82459da",
+                        "impact": 0,
+                        "object": "Caroline Santos",
+                        "objectType": "string",
+                        "relationship": "has a nominee",
+                        "repeated": true,
+                        "salience": 0,
+                        "subject": "01"
+                      },
+                      {
+                        "certainty": 100,
+                        "evidence": {
+                          "factID": "WA:KF:b6982b014d9bdce44d5bdcb92e00abbbd858a609d981626795d76b7d836e7701",
+                          "source": "km",
+                          "fact": {
+                            "subject": {
+                              "type": "Nominee",
+                              "value": "Caroline Santos",
+                              "dataType": "string"
+                            },
+                            "relationship": {
+                              "type": "has a nominee home state"
+                            },
+                            "object": {
+                              "type": "State",
+                              "value": "NSW",
+                              "dataType": "string"
+                            },
+                            "certainty": 100
+                          },
+                          "time": 1794923916104
+                        },
+                        "factID": "WA:KF:b6982b014d9bdce44d5bdcb92e00abbbd858a609d981626795d76b7d836e7701",
+                        "impact": 0,
+                        "object": "NSW",
+                        "objectType": "string",
+                        "relationship": "has a nominee home state",
+                        "salience": 0,
+                        "subject": "Caroline Santos"
+                      },
+                      {
+                        "alt": "Location is away from Nominee's home State",
+                        "expression": {
+                          "text": "%LOCATION_OF_OFFENCE is not equal to %NOM_STATE"
+                        },
+                        "impact": 50,
+                        "salience": 100,
+                        "wasMet": true
+                      }
+                    ],
+                    "ruleMaxCertainty": 100
+                  }
+                },
+                "factID": "WA:RF:4b159623eae57d15f75620d2e5129248f87e9449c24ed46b58e25a7882d257b2",
+                "factKey": "7970f20e-000e-478f-8353-a829eed9b9e1",
+                "impact": 80,
+                "object": "Infringement Location away from Nominee's Home",
+                "objectType": "string",
+                "relationship": "has risk factors",
+                "salience": 100,
+                "subject": "01"
+              }
+            ],
+            "ruleMaxCertainty": 80
+          }
+        },
+        "factID": "WA:RF:48851f37102e8e71d8071ee81b290796b32923d4aa796a3972385069d58ac6d6",
+        "factKey": "41e400da-c7dd-4af0-948c-44541c76c056",
+        "impact": 80,
+        "object": "Score",
+        "objectType": "string",
+        "relationship": "has fraud likelihood",
+        "salience": 100,
+        "subject": "01"
+      }
+    ],
+    "ruleMaxCertainty": 100
+  }
+}

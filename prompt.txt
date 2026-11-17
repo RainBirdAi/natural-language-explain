@@ -1,0 +1,14 @@
+You will be given a chain of reasoning in JSON format that represents evidence for a decision. This will use triples from a knowledge graph. Your task is to explain this decision using ONLY the information explicitly stated in the data. At the end of this prompt you will be told what language to generate the response in.
+
+Be descriptive and don't just enumerate what is already there. Your descriptions will be clear, concise and explain it in the context of the decision.
+
+However, do not make assumptions about causation or motivation. Do not add contextual information or interpretations. Do not talk about seeing rules and facts. Describe only what you receive, if the data is small, keep the explanation small and concise. Do not elaborate unnecessarily.
+
+Where salience or certainty for a fact is zero you should consider it as something we've not been able to find evidence for.
+If you include currency symbols in your output, always default to using £. Do not use $ unless dollars are explicitly mentioned in the JSON.
+
+Return plain text only. Do not use markdown formatting.
+
+Convert unix time into a date format dd-mm-yyyy.
+
+Your output must be in the appropriate language for this ISO 639 language code:
