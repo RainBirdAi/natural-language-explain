@@ -50,10 +50,10 @@ def test_explain_happy_path(api):
     resp = client.post("/explain", json={"fact_id": "F1", "session_id": "S1"})
 
     assert resp.status_code == 200
+    # processed_evidence is omitted entirely (not null) on a non-debug request.
     assert resp.json() == {
         "explanation": "A concise, plain-text explanation.",
         "language": "en",
-        "processed_evidence": None,
     }
 
     # Rainbird received the request inputs + configured base URL; no key sent.

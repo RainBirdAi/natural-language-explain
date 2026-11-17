@@ -12,7 +12,7 @@ Given a fact and session, it:
    [Rainbird evidence endpoint](https://docs.rainbird.ai/rainbird/developer-docs/api-reference/evidence).
 3. Removes synthetic facts from the evidence.
 4. Normalises unix timestamps to a readable `dd-mm-yyyy` format.
-5. Sends the processed evidence + the base prompt (`prompt.txt`) + the target
+5. Sends the processed evidence + the base prompt (`gemini-prompt.txt`) + the target
    language to **Google Gemini** (via Vertex AI) and returns the explanation.
 
 ## Project layout
@@ -27,7 +27,7 @@ app/
     rainbird.py        # (1-2) call the evidence endpoint
     evidence.py        # (3-4) strip synthetic facts + normalise dates
     gemini.py          # (5)   generate the explanation via Vertex AI
-prompt.txt             # base prompt template sent to Gemini
+gemini-prompt.txt      # base prompt template sent to Gemini
 tests/                 # unit tests for the evidence processing
 ```
 
@@ -79,15 +79,15 @@ Add `?debug=true` to also receive the processed evidence in the response.
 
 ## Configuration
 
-| Variable                   | Default            | Purpose                                            |
-| -------------------------- | ------------------ | -------------------------------------------------- |
-| `GCP_PROJECT_ID`           | _(required)_       | Google Cloud project for Vertex AI.                |
-| `GCP_LOCATION`             | `global`           | Vertex AI location (model-dependent).              |
-| `GEMINI_MODEL`             | `gemini-3.8-flash` | Gemini model used for the explanation.             |
-| `GEMINI_TEMPERATURE`       | `0.2`              | Generation temperature.                            |
-| `PROMPT_PATH`              | `prompt.txt`       | Path to the base prompt template.                  |
-| `RAINBIRD_API_URL`         | _(required)_       | Base URL of the Rainbird API.                      |
-| `RAINBIRD_TIMEOUT_SECONDS` | `30`               | HTTP timeout for the evidence request.             |
+| Variable                   | Default             | Purpose                                |
+| -------------------------- | ------------------- | -------------------------------------- |
+| `GCP_PROJECT_ID`           | _(required)_        | Google Cloud project for Vertex AI.    |
+| `GCP_LOCATION`             | `global`            | Vertex AI location (model-dependent).  |
+| `GEMINI_MODEL`             | `gemini-3.8-flash`  | Gemini model used for the explanation. |
+| `GEMINI_TEMPERATURE`       | `0.2`               | Generation temperature.                |
+| `PROMPT_PATH`              | `gemini-prompt.txt` | Path to the base prompt template.      |
+| `RAINBIRD_API_URL`         | _(required)_        | Base URL of the Rainbird API.          |
+| `RAINBIRD_TIMEOUT_SECONDS` | `30`                | HTTP timeout for the evidence request. |
 
 ## Tests
 

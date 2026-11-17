@@ -31,11 +31,14 @@ class Settings(BaseSettings):
     gemini_temperature: float = 0.2
 
     # --- Prompt --------------------------------------------------------------
-    prompt_path: str = "prompt.txt"
+    prompt_path: str = "gemini-prompt.txt"
 
     # --- Rainbird ------------------------------------------------------------
     rainbird_api_url: str | None = None
     rainbird_timeout_seconds: float = 30.0
+
+    # --- Logging -------------------------------------------------------------
+    log_level: str = "INFO"
 
 
 @lru_cache
