@@ -2,11 +2,12 @@
 
 Docs: https://docs.rainbird.ai/rainbird/developer-docs/api-reference/evidence
 
-    GET {base_url}/analysis/evidence/{fact_id}/{session_id}
+    GET {base_url}/analysis/evidence/{fact_id}/{session_id}?full=true
     header: x-evidence-key: <evidence_key>
 
 The evidence is secured by default; access is granted via the evidence key, so
-no account-level X-API-Key is required for this flow.
+no account-level X-API-Key is required for this flow. The ``full=true`` query
+parameter returns the full evidence tree, with recursive nested facts.
 """
 
 from __future__ import annotations
@@ -16,6 +17,8 @@ from typing import Any
 import httpx
 
 EVIDENCE_PATH = "/analysis/evidence/{fact_id}/{session_id}"
+# full=true returns the complete evidence tree (recursive nested facts).
+EVIDENCE_QUERY = {"full": "true"}
 
 
 class RainbirdError(Exception):
@@ -42,7 +45,7 @@ async def fetch_evidence(
 
     try:
         async with httpx.AsyncClient(timeout=timeout) as client:
-            response = await client.get(url, headers=headers)
+            response = await client.get(url, headers=headers, params=EVIDENCE_QUERY)
     except httpx.HTTPError as exc:
         raise RainbirdError(f"Could not reach Rainbird at {url}: {exc}") from exc
 

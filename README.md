@@ -95,18 +95,13 @@ Add `?debug=true` to also receive the processed evidence in the response.
 pytest
 ```
 
-## Open items
+## Processing notes
 
-- **Synthetic-fact definition** — the removal logic in
-  [`app/services/evidence.py`](app/services/evidence.py) is wired and tested,
-  but the exact rule for what counts as a "synthetic fact" is a placeholder
-  (safe no-op by default). Provide the definition and it drops into
-  `is_synthetic_fact` / `SYNTHETIC_SOURCES`.
+See [`app/services/evidence.py`](app/services/evidence.py).
 
-## Notes
-
+- **Synthetic facts** are removed: any node whose `factID` begins with the
+  literal prefix `WA:XX` is dropped (real facts use `WA:RF` / `WA:AF` / `WA:KF`).
 - **Timestamps** are treated as epoch **milliseconds** (the Rainbird/JS
   convention) and normalised to `dd-mm-yyyy` wherever they appear: the `time`
   field, date-typed fact values (`dataType`/`type` = `date`), and flattened
-  condition values (`objectType` = `date`). See
-  [`app/services/evidence.py`](app/services/evidence.py).
+  condition values (`objectType` = `date`).

@@ -101,20 +101,72 @@ def test_normalize_dates_does_not_mutate_input(example_evidence):
 
 # --- synthetic-fact removal --------------------------------------------------
 
-
-def test_strip_synthetic_removes_flagged_items():
-    data = {"conditions": [{"synthetic": True, "x": 1}, {"x": 2}]}
-    assert strip_synthetic_facts(data) == {"conditions": [{"x": 2}]}
+_SYNTH = "WA:XX:2b8f1a"
 
 
-def test_strip_synthetic_is_noop_by_default_for_sources():
-    # SYNTHETIC_SOURCES is empty by default, so nothing is dropped on `source`.
-    data = {"conditions": [{"source": "injection"}, {"source": "rule"}]}
+def _all_fact_ids(data: Any) -> list[str]:
+    ids: list[str] = []
+    if isinstance(data, dict):
+        fid = data.get("factID")
+        if isinstance(fid, str):
+            ids.append(fid)
+        for value in data.values():
+            ids.extend(_all_fact_ids(value))
+    elif isinstance(data, list):
+        for item in data:
+            ids.extend(_all_fact_ids(item))
+    return ids
+
+
+def test_strip_removes_list_item_with_synthetic_factid():
+    data = {
+        "conditions": [
+            {"factID": _SYNTH, "object": "x", "evidence": {"factID": _SYNTH}},
+            {"factID": "WA:AF:real", "object": "y"},
+        ]
+    }
+    assert strip_synthetic_facts(data) == {
+        "conditions": [{"factID": "WA:AF:real", "object": "y"}]
+    }
+
+
+def test_strip_drops_nested_synthetic_evidence_value():
+    # Defensive: a synthetic fact under an "evidence" key is removed too.
+    data = {"factID": "WA:AF:real", "evidence": {"factID": _SYNTH, "x": 1}}
+    out = strip_synthetic_facts(data)
+    assert out == {"factID": "WA:AF:real"}
+
+
+def test_strip_keeps_real_fact_prefixes():
+    data = {"conditions": [{"factID": "WA:RF:a"}, {"factID": "WA:AF:b"}, {"factID": "WA:KF:c"}]}
     assert strip_synthetic_facts(data) == data
 
 
+def test_strip_ignores_nodes_without_factid():
+    # Expression/operator nodes have no factID -> never removed.
+    data = {"conditions": [{"expression": {"text": "a is not equal to b"}, "wasMet": True}]}
+    assert strip_synthetic_facts(data) == data
+
+
+def test_strip_on_real_evidence_is_noop(example_evidence):
+    # The sample contains only WA:RF/AF/KF facts, so nothing is stripped.
+    assert strip_synthetic_facts(example_evidence) == example_evidence
+
+
+def test_process_evidence_removes_synthetic_then_normalises(example_evidence):
+    processed = process_evidence(example_evidence)
+    assert all(not fid.startswith(_SYNTH[:5]) for fid in _all_fact_ids(processed))
+    assert processed["time"] == "17-11-2026"
+
+
 def test_process_evidence_composes_both_steps():
-    data = {"time": _TS_MILLIS, "conditions": [{"synthetic": True}, {"time": _TS_MILLIS}]}
+    data = {
+        "time": _TS_MILLIS,
+        "conditions": [
+            {"factID": _SYNTH, "time": _TS_MILLIS},
+            {"factID": "WA:AF:real", "time": _TS_MILLIS},
+        ],
+    }
     out = process_evidence(data)
     assert out["time"] == "17-11-2026"
-    assert out["conditions"] == [{"time": "17-11-2026"}]
+    assert out["conditions"] == [{"factID": "WA:AF:real", "time": "17-11-2026"}]

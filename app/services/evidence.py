@@ -13,32 +13,35 @@ from typing import Any
 # ---------------------------------------------------------------------------
 # 3. Synthetic-fact removal
 # ---------------------------------------------------------------------------
-# TODO(project owner): The precise definition of a "synthetic fact" in Rainbird
-# evidence is still to be confirmed. The traversal below is complete and tested;
-# only the `is_synthetic_fact` predicate needs the real rule once we have it.
-#
-# Until then the default behaviour is a safe no-op (nothing is removed): the
-# `synthetic: true` flag is honoured if present, and `SYNTHETIC_SOURCES` is an
-# opt-in set of `source` values to treat as synthetic (empty by default, so no
-# evidence is dropped by accident).
-SYNTHETIC_SOURCES: set[str] = set()  # e.g. {"injection"} once confirmed
+# A fact is synthetic when its `factID` begins with the literal prefix "WA:XX"
+# (real facts use prefixes such as WA:RF / WA:AF / WA:KF). Such facts are
+# dropped from the evidence entirely.
+SYNTHETIC_FACT_ID_PREFIX = "WA:XX"
 
 
 def is_synthetic_fact(node: dict[str, Any]) -> bool:
-    """Return True if a dict node represents a synthetic fact to be removed."""
-    if node.get("synthetic") is True:
-        return True
-    source = node.get("source")
-    if isinstance(source, str) and source in SYNTHETIC_SOURCES:
-        return True
-    return False
+    """Return True if a dict node is a synthetic fact (factID prefixed WA:XX)."""
+    fact_id = node.get("factID")
+    return isinstance(fact_id, str) and fact_id.startswith(SYNTHETIC_FACT_ID_PREFIX)
 
 
 def strip_synthetic_facts(data: Any) -> Any:
-    """Recursively drop synthetic-fact items from any list in the structure."""
+    """Recursively remove synthetic facts wherever they appear.
+
+    Synthetic facts occur both as items of a ``conditions`` list and as the
+    value under an ``evidence`` key; both forms are dropped. The traversal does
+    not remove the root node itself (the queried fact).
+    """
     if isinstance(data, dict):
-        return {key: strip_synthetic_facts(value) for key, value in data.items()}
+        result: dict[str, Any] = {}
+        for key, value in data.items():
+            # Drop a key (e.g. "evidence") whose value is a synthetic fact.
+            if isinstance(value, dict) and is_synthetic_fact(value):
+                continue
+            result[key] = strip_synthetic_facts(value)
+        return result
     if isinstance(data, list):
+        # Drop synthetic-fact items from the list.
         return [
             strip_synthetic_facts(item)
             for item in data

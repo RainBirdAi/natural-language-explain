@@ -14,7 +14,9 @@ EVIDENCE_URL = f"{BASE}/analysis/evidence/F1/S1"
 
 @respx.mock
 async def test_fetch_evidence_builds_url_and_sends_key():
-    route = respx.get(EVIDENCE_URL).mock(return_value=httpx.Response(200, json={"ok": True}))
+    route = respx.get(EVIDENCE_URL, params={"full": "true"}).mock(
+        return_value=httpx.Response(200, json={"ok": True})
+    )
 
     result = await rainbird.fetch_evidence(
         base_url=f"{BASE}/",  # trailing slash should be handled
@@ -26,7 +28,10 @@ async def test_fetch_evidence_builds_url_and_sends_key():
 
     assert result == {"ok": True}
     assert route.called
-    assert route.calls.last.request.headers["x-evidence-key"] == "secret-key"
+    request = route.calls.last.request
+    assert request.headers["x-evidence-key"] == "secret-key"
+    # full=true must be present to get the recursive evidence tree.
+    assert request.url.params["full"] == "true"
 
 
 @respx.mock
