@@ -105,3 +105,8 @@ See [`app/services/evidence.py`](app/services/evidence.py).
   convention) and normalised to `dd-mm-yyyy` wherever they appear: the `time`
   field, date-typed fact values (`dataType`/`type` = `date`), and flattened
   condition values (`objectType` = `date`).
+
+## License
+
+Released under the [MIT License](LICENSE). Copyright (c) 2026 Rainbird
+Technologies Ltd.
