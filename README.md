@@ -1,4 +1,4 @@
-# nl-explain
+# Natural-Language Explanation Service for Rainbird Evidence
 
 An HTTP service that turns a Rainbird session's **evidence** into a
 human-readable, natural-language **explanation**.
@@ -73,8 +73,8 @@ curl -X POST http://127.0.0.1:8000/explain \
   }'
 ```
 
-`fact_id` and `session_id` are required; `evidence_key` (only needed when
-evidence is secured in Rainbird) and `language` (defaults to `en`) are optional.
+`fact_id` and `session_id` are required These can both be obtained from the results response of a Rainbird /query API call.
+; `evidence_key` (only needed when evidence is secured in Rainbird - can be obtained in the Rainbird Studio > knowledge graph > Publish) and `language` (defaults to `en`) are optional.
 Add `?debug=true` to also receive the processed evidence in the response.
 
 ## Configuration
